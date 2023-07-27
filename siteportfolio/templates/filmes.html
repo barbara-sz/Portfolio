@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="main_container">
+    <div class="container-fluid pt-5 pb-2 ps-5" style="background-color: #fcc582; font-size:14px">
+        <h3>Filmes e Séries</h3>
+        <p class="my-1">Este projeto foi desenhado para buscar informações de filmes e séries através da integração de
+            APIs, como <a class="link-dark" href="https://developer.themoviedb.org/docs">TMDB</a> e da bilbioteca <a
+                    class="link-dark" href="https://pypi.org/project/cinemagoer/">Cinemagoer</a> que se baseiam em
+            informações da IMDB (Internet Movie Database) de diferentes maneiras.</p>
+        <p class="my-1">Conforme o objetivo do usuário, alguns parâmetros são levados em consideração e sua operação se
+            divide em três métodos de pesquisa, como exposto abaixo.</p>
+    </div>
+
+    <nav>
+        <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-film-tab" data-bs-toggle="tab" data-bs-target="#nav-film"
+                    type="button" role="tab" aria-controls="nav-film" aria-selected="true">Filmografia
+            </button>
+            <button class="nav-link" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#nav-info" type="button"
+                    role="tab" aria-controls="nav-info" aria-selected="false">Informações
+            </button>
+            <button class="nav-link" id="nav-sug-tab" data-bs-toggle="tab" data-bs-target="#nav-sug" type="button"
+                    role="tab" aria-controls="nav-sug" aria-selected="false">Sugestões
+            </button>
+        </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-film" role="tabpanel" aria-labelledby="nav-film-tab"
+             tabindex="0">
+            <div class="container py-3">
+                <div class="mb-3">
+                    Pesquise os filmes ou séries dos seus artistas favoritos.
+                </div>
+                <form method="POST">
+                    <fieldset>
+                        <div class="row pb-2">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_filmografia.ator.label(class="form-control-label") }}
+                                    {{ form_filmografia.ator(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                {{ form_filmografia.tipo(class="form-check") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{ form_filmografia.botao_filmografia(class="btn btn-dark") }}
+                </form>
+                <div class="sec_container">
+                    <table class="table">
+                        <tr>
+                            <th>Título</th>
+                            <th>Ano</th>
+                        </tr>
+                        {% for filme in lista_filmes %}
+                        <tr>
+                            <td>{{ filme['title'] }}</td>
+                            <td>{{ filme['title'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab" tabindex="0">
+            <div class="container py-3">
+                <div class="mb-3">
+                    Pesquise informações filmes ou séries que queira saber mais detalhes sobre.
+                </div>
+                <form method="POST">
+                    <fieldset>
+                        <div class="row pb-2">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_informacoes.ano.label(class="form-control-label") }}
+                                    {{ form_informacoes.ano(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_informacoes.filme.label(class="form-control-label") }}
+                                    {{ form_informacoes.filme(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_informacoes.pessoas.label(class="form-control-label") }}
+                                    {{ form_informacoes.pessoas(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_informacoes.genero1.label(class="form-control-label") }}
+                                    {{ form_informacoes.genero1 }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_informacoes.genero2 }}
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{ form_informacoes.botao_informacoes(class="btn btn-dark") }}
+                </form>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-sug" role="tabpanel" aria-labelledby="nav-sug-tab" tabindex="0">
+            <div class="container py-3">
+                <div class="mb-3">
+                    Não sabe o que assistir hoje à noite? Diga suas preferências e receba sugestões.
+                </div>
+                <form method="POST">
+                    <fieldset>
+                        <div class="row pb-2">
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_sugestoes.ator.label(class="form-control-label") }}
+                                    {{ form_sugestoes.ator(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_sugestoes.ano.label(class="form-control-label") }}
+                                    {{ form_sugestoes.ano(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_sugestoes.genero.label(class="form-control-label") }}
+                                    {{ form_sugestoes.genero(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    {{ form_sugestoes.plataforma.label(class="form-control-label") }}
+                                    {{ form_sugestoes.plataforma(class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_sugestoes.extra.label(class="form-control-label") }}
+                                    {{ form_sugestoes.extra(class="form-control") }}
+                                </div>
+                                {{ form_sugestoes.tipo(class="form-check") }}
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{ form_sugestoes.botao_sugestoes(class="btn btn-dark") }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

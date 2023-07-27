@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-dark fixed-top" style="font-family: Lucida Bright" data-bs-theme="dark">
+  <div class="container-fluid container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active mx-3" aria-current="page" href="{{ url_for('home') }}">home</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active mx-3" aria-current="page" href="{{ url_for('site') }}">site</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active mx-3" href="{{ url_for('sobremim') }}">sobre mim</a>
+        </li>
+          <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    projetos
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('filmes') }}">filmes e séries</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('dados') }}">análise de dados</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('estoque') }}">controle de estoque</a></li>
+          </ul>
+      </div>
+      </ul>
+    </div>
+  </div>
+</nav>

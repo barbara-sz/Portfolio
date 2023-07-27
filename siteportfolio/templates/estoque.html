@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="main_container">
+    <div class="container mt-2 mb-0">
+        {% with mensagens = get_flashed_messages(with_categories=True) %}
+        {% if mensagens %}
+        {% for category, mensagem in mensagens %}
+        <div class="alert {{ category }}" id="inner-message">
+            {{ mensagem }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <div class="container-fluid pt-5 ps-5 pb-3 pe-3" style="font-size:14px">
+        <h3>Controle de Estoque</h3>
+        <p class="my-1">Conforme o título do projeto já diz, este trabalho se trata de um controle de estoque, onde se
+            pode realizar todas as ações necessárias para o gerenciamento dos produtos.</p>
+        <p class="my-1">Sua estrutura foi baseada na interligação entre um banco de dados e um sistema em Python,
+            utilizando o Flask e o SQLAlchemy,
+            que neste caso está hospedado numa página html, mas poderia facilmente ser montado com Tkinter.</p>
+        <p class="my-1">Apesar de ser um programa relativamente simples, este tipo de desenvolvimento é muito comum e
+            serve para diversas finalidades, sendo muito útil e aceitando facilmente adaptações.</p>
+    </div>
+    <div class="container-fluid mx-0 mt-2 px-5" style="background-color: #20B2AA">
+        <div class="row">
+            <div class="col-7 pe-5 me-5">
+                <form method="POST">
+                    {{ form_estoque.csrf_token }}
+                    <fieldset>
+                        <div class="form-group">
+                            {{ form_estoque.produto.label(class="form-control-label") }}
+
+                            {% if form_estoque.produto.errors %}
+                            {{ form_estoque.produto(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_estoque.produto.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form_estoque.produto(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form_estoque.qtd.label(class="form-control-label") }}
+                            {{ form_estoque.qtd(class="form-control") }}
+                        </div>
+                        <div class="form-group pb-3">
+                            {{ form_estoque.categoria.label(class="form-control-label") }}
+                            {{ form_estoque.categoria(class="form-control") }}
+                        </div>
+                    </fieldset>
+                    {{ form_estoque.botao_acrescentar(class="btn btn-dark") }}
+                    {{ form_estoque.botao_retirar(class="btn btn-dark") }}
+                    {{ form_estoque.botao_consultar(class="btn btn-dark") }}
+                    {{ form_estoque.botao_deletar(class="btn btn-dark") }}
+                    {{ form_estoque.botao_novo(class="btn btn-dark") }}
+                </form>
+            </div>
+            <div class="col-4 text-center">
+                <img src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=909&q=80"
+                     height="300px" width="450px">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sec_container">
+    <table class="table mx-3">
+        <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Categoria</th>
+            <th>Editor</th>
+            <th>Data</th>
+        </tr>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.produto }}</td>
+            <td>{{ produto.qtd }}</td>
+            <td>{{ produto.categoria }}</td>
+            <td>{{ produto.editor }}</td>
+            <td>{{ produto.data }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

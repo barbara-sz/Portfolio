@@ -1,0 +1,26 @@
+.main_container {
+  float: left;
+  height: calc(100vh - 50px);
+  bottom:0;
+  top:0;
+  left:0;
+  right:0;
+  width: calc(100% - 100px);
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  background-color:#f0f0ef;
+  }
+
+.sec_container {
+  float: left;
+  clear: both;
+  height:auto;
+  width: calc(100% - 100px);
+  margin-right: 50px;
+  margin-left: 50px;
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color:#f0f0ef;
+}

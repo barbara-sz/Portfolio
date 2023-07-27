@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="main_container">
+    <div class="row">
+        <div class="col pt-3 ms-4 ">
+            <iframe class="pt-1" title="Report Section" width="900" height="630"
+                    src="https://app.powerbi.com/view?r=eyJrIjoiNTU5Mzk1YmEtMzk2Ni00ODQzLTljZTQtZDc5NTUyZjA3NDZjIiwidCI6ImU4NDRlN2E5LWQ2MmItNDUyYy04Njc0LTEwZTczNWZiNTliNCJ9"
+                    frameborder="0" allowFullScreen="true"></iframe>
+        </div>
+        <div class="col pt-5 px-3 me-4">
+            <h3>PowerBI</h3>
+            <p class="my-1" style="font-size:14px">O PowerBI acaba sendo muito prático para o todo o processo de
+                análise, já que toda a limpeza dos dados e a construção da visualização é feita em um só lugar.</p>
+            <p class="my-1" style="font-size:14px">Esta base foi extraída do <a class="link-dark"
+                                                                                href="https://www.kaggle.com/datasets">kaggle</a>
+                e se trata de informações de lançamento e venda de jogos para diferentes consoles de videogames.</p>
+            <p class="my-1" style="font-size:14px">Os dados são bem básicos e intuitivos, tornando a construção dos
+                elementos mais fácil. As informações estão em milhões de dólares e se baseiam nos jogos, em regiões,
+                plataforma (console) e gênero.</p>
+        </div>
+    </div>
+</div>
+
+<div class="sec_container pb-5">
+    <h3>Plotly</h3>
+    <p class="my-1" style="font-size:14px">Apesar de o PowerBI ser muito útil, existe outras ferramentas que são
+        excelentes para análise e visualização de dados, como a biblioteca dash do python.</p>
+    <p class="my-1" style="font-size:14px">O plotly traz muitas formas de explorar os dados, para várias
+        finalidades. A própria biblioteca tem como objetivo a publicação online dos dashboards por meio de uma
+        página html e segue a mesma lógica utilizada no Flask. Com alguns ajustes, é possível integrar as duas
+        ferramentas gerando um conteúdo visual de qualidade.</p>
+    <p class="my-1" style="font-size:14px">Esta base de dados foi criada através do ChatGPT e é um exemplo típico
+        que contém informações de vendas de uma empresa com quantidade de produtos vendidos, preço unitário,
+        faturamento, categorias e localização.</p>
+    <iframe src="http://127.0.0.1:5000/dash/" width=1300 height=430 class="mx-0 px-0"></iframe>
+
+
+    <p class="my-1" style="font-size:14px">Estes painéis são somente uma pincelada sobre análise de dados, mas escolhi
+        esta forma por ser mais visual.</p>
+    <p class="my-1" style="font-size:14px">Apesar disso, a parte de tratamento e modelagem dos dados têm papel
+        fundamental, sendo a base para que sua análise seja bem feita.</p>
+</div>
+
+
+{% endblock %}
