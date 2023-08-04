@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired
 
 
 class FormFilmografia(FlaskForm):
-    ator = StringField("Ator/Atriz")
-    tipo = RadioField(choices=['Filme', 'Série'], widget=widgets.TableWidget(with_table_tag=True))
+    ator = StringField("Ator/Atriz", render_kw={"placeholder": "angelina jolie"})
+    tipo = RadioField(choices=['Filme', 'TV/Série'], widget=widgets.TableWidget(with_table_tag=True), default='Filme')
     botao_filmografia = SubmitField("Pesquisar")
 
 
@@ -15,9 +15,10 @@ class MultiCheckboxField(SelectMultipleField):
 
 
 class FormInformacoes(FlaskForm):
-    ano = StringField("Ano")
-    filme = StringField("Filme")
-    pessoas = StringField("Artistas")
+    tipo = RadioField(choices=['Filme', 'TV/Série'], widget=widgets.TableWidget(with_table_tag=True), default='Filme')
+    ano = StringField("Ano", render_kw={"placeholder": "Opcional"})
+    filme = StringField("Filme", render_kw={"placeholder": "o senhor dos aneis"})
+    pessoas = StringField("Artistas",  render_kw={"placeholder": "Opcional"})
     genero1 = MultiCheckboxField(label="Gênero",
                                 choices=[('28', 'Acão'), ('12', 'Aventura'), ('16', 'Animação'), ('35', 'Comédia'),
                                          ('80', 'Crime'), ('99', 'Documentário'), ('18', 'Drama'),('10751', 'Família'),

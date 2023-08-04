@@ -3,12 +3,13 @@
 {% block body %}
 
 <div class="main_container">
-    <div class="container-fluid pt-5 pb-2 ps-5" style="background-color: #fcc582; font-size:14px">
+    <div class="container-fluid pt-5 pb-4 ps-5 pe-5" style="background-color: #fcc582; font-size:14px">
+
         <h3>Filmes e Séries</h3>
-        <p class="my-1">Este projeto foi desenhado para buscar informações de filmes e séries através da integração de
-            APIs, como <a class="link-dark" href="https://developer.themoviedb.org/docs">TMDB</a> e da bilbioteca <a
-                    class="link-dark" href="https://pypi.org/project/cinemagoer/">Cinemagoer</a> que se baseiam em
-            informações da IMDB (Internet Movie Database) de diferentes maneiras.</p>
+        <p class="my-1">Este projeto foi desenhado para buscar informações de filmes e séries através da integração com
+            o API da <a class="link-dark" href="https://www.themoviedb.org/?language=pt-BR">TMDB</a> (The Movie
+            Database). Vários outros APIs foram testados, mas seu tempo de resposta foi muito menor, além de ser muito
+            completo, organizado e gratuito.</p>
         <p class="my-1">Conforme o objetivo do usuário, alguns parâmetros são levados em consideração e sua operação se
             divide em três métodos de pesquisa, como exposto abaixo.</p>
     </div>
@@ -50,28 +51,37 @@
                     </fieldset>
                     {{ form_filmografia.botao_filmografia(class="btn btn-dark") }}
                 </form>
-                <div class="sec_container">
-                    <table class="table">
-                        <tr>
-                            <th>Título</th>
-                            <th>Ano</th>
-                        </tr>
-                        {% for filme in lista_filmes %}
-                        <tr>
-                            <td>{{ filme['title'] }}</td>
-                            <td>{{ filme['title'] }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
 
-                </div>
+            </div>
+            <div class="container mt-2 mb-0">
+        {% with mensagens = get_flashed_messages(with_categories=True) %}
+        {% if mensagens %}
+        {% for category, mensagem in mensagens %}
+        <div class="alert {{ category }}" id="inner-message">
+            {{ mensagem }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+            <div class="container-fluid mt-5 mx-0 px-5" style="background-color:#f0f0ef">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Título</th>
+                    </tr>
+                        {% for filme in lista_filmes %}
+                    <tr>
+                        <td>{{ filme }}</td>
+                    </tr>
+                        {% endfor %}
+                </table>
             </div>
         </div>
 
         <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab" tabindex="0">
             <div class="container py-3">
                 <div class="mb-3">
-                    Pesquise informações filmes ou séries que queira saber mais detalhes sobre.
+                    Pesquise informações sobre filmes ou séries que queira saber mais detalhes sobre.
                 </div>
                 <form method="POST">
                     <fieldset>
@@ -91,20 +101,24 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
-                                    {{ form_informacoes.genero1.label(class="form-control-label") }}
-                                    {{ form_informacoes.genero1 }}
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    {{ form_informacoes.genero2 }}
-                                </div>
+                                {{ form_informacoes.tipo(class="form-check") }}
                             </div>
                         </div>
                     </fieldset>
                     {{ form_informacoes.botao_informacoes(class="btn btn-dark") }}
                 </form>
+            </div>
+            <div class="container-fluid mt-5 mx-0 px-5" style="background-color:#f0f0ef">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Título</th>
+                    </tr>
+                        {% for filme in lista_filmes %}
+                    <tr>
+                        <td>{{ filme }}</td>
+                    </tr>
+                        {% endfor %}
+                </table>
             </div>
         </div>
 
@@ -135,10 +149,7 @@
                                     {{ form_sugestoes.plataforma.label(class="form-control-label") }}
                                     {{ form_sugestoes.plataforma(class="form-control") }}
                                 </div>
-                                <div class="form-group">
-                                    {{ form_sugestoes.extra.label(class="form-control-label") }}
-                                    {{ form_sugestoes.extra(class="form-control") }}
-                                </div>
+
                                 {{ form_sugestoes.tipo(class="form-check") }}
                             </div>
                         </div>
